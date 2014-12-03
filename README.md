@@ -1,26 +1,27 @@
 GoRelic
 =======
 
-NewRelic middleware for martini framework.
+NewRelic middleware for gin-gonic framework.
 
 ## Usage
 
-~~~ go
+```go
 import(
-	"github.com/go-martini/martini"
-	"github.com/martini-contrib/gorelic"
+	"github.com/gin-gonic/gin"
+	"github.com/brandfolder/gin-gorelic"
 )
 
 func main(){
-	m := martini.Classic()
+	g := gin.Default()
 
 	gorelic.InitNewrelicAgent("YOUR_NEWRELIC_LICENSE_KEY", "YOUR_APPLICATION_NAME", true)
-	m.Use(gorelic.Handler)
+	g.Use(gorelic.Handler)
 
-	m.Run()
+	g.Run()
 }
-~~~
+```
 
 ## Authors
 
-* [Yuriy Vasiyarov](http://github.com/yvasiyarov)
+* [Jason Waldrip](http://github.com/jwaldrip)
+* [Yuriy Vasiyarov](http://github.com/yvasiyarov) [original martini gorelic]

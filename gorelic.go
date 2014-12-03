@@ -2,20 +2,23 @@ package gorelic
 
 import (
 	"fmt"
-	"github.com/go-martini/martini"
+	"time"
+
+	"github.com/gin-gonic/gin"
 	metrics "github.com/yvasiyarov/go-metrics"
 	"github.com/yvasiyarov/gorelic"
-	"time"
 )
 
 var agent *gorelic.Agent
 
-func Handler(c martini.Context) {
+// Handler for the agent
+func Handler(c *gin.Context) {
 	startTime := time.Now()
 	c.Next()
 	agent.HTTPTimer.UpdateSince(startTime)
 }
 
+// InitNewrelicAgent creates the new relic agent
 func InitNewrelicAgent(license string, appname string, verbose bool) error {
 
 	if license == "" {
