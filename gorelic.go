@@ -15,7 +15,9 @@ var agent *gorelic.Agent
 func Handler(c *gin.Context) {
 	startTime := time.Now()
 	c.Next()
-	agent.HTTPTimer.UpdateSince(startTime)
+	if agent != nil {
+		agent.HTTPTimer.UpdateSince(startTime)
+	}
 }
 
 // InitNewrelicAgent creates the new relic agent
